@@ -7,9 +7,12 @@ new Vue({
   },
 
   mounted: function() {
-    var editor = ace.edit("code");
+    var editor = this.editor = ace.edit("code");
     editor.setTheme("ace/theme/solarized_light");
     editor.getSession().setMode("ace/mode/c_cpp");
+    editor.setOptions({
+      fontSize: '11pt'
+    });
   },
 
   methods: {
@@ -20,7 +23,7 @@ new Vue({
         context: this,
         data: {
           name: 'system',
-          code: $('#code').val()
+          code: this.editor.getSession().getValue()
         }
       }).done(function(result) {
         if (result.error) {
