@@ -5,6 +5,13 @@ new Vue({
     passes: [],
     output: ""
   },
+
+  mounted: function() {
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/solarized_light");
+    editor.getSession().setMode("ace/mode/c_cpp");
+  },
+
   methods: {
     compile: function() {
       $.ajax({
