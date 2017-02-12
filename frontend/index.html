@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gimple Viewer</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+
+  <div id="app">
+    <div id="left">
+      <textarea id="code">{{ code }}</textarea>
+      <button v-on:click="compile">Run</button>
+    </div>
+
+    <div id="passes">
+      <div v-for="pass in passes">{{ pass.name }}</div>
+    </div>
+
+    <div id="right">
+      <textarea id="output">{{ output }}</textarea>
+    </div>
+  </div>
+
+  <script src="/frontend.js"></script>
+</body>
+
+</html>
