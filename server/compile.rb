@@ -10,7 +10,7 @@ def compile(path, content)
       f.write(content)
     end
 
-    res = system(path, '-O3', '-fdump-tree-all', '-fdump-noaddr', '-fverbose-asm', '-S', input, chdir: dir, :err => "#{dir}/output", :out => "#{dir}/output")
+    res = system(path, '-O3', '-fdump-tree-all', '-fdump-rtl-all', '-fdump-noaddr', '-fverbose-asm', '-S', input, chdir: dir, :err => "#{dir}/output", :out => "#{dir}/output")
 
     unless res
       output = File.read("#{dir}/output")
@@ -33,6 +33,7 @@ def compile(path, content)
         passes[num] = {
           name: name,
           pass: pass,
+          num: num,
           format: format == 't' ? :gimple : :rtl,
           content: File.read(entry)
         }

@@ -3,11 +3,11 @@ new Vue({
   data: {
     code: "int foo(int a, int b) {\n  return a + b;\n}",
     passes: [],
-    output: ""
+    selected: undefined,
   },
 
   mounted: function() {
-    var editor = this.editor = ace.edit("code");
+    var editor = this.code_editor = ace.edit("code");
     editor.setTheme("ace/theme/solarized_light");
     editor.getSession().setMode("ace/mode/c_cpp");
     editor.setOptions({
@@ -23,7 +23,7 @@ new Vue({
         context: this,
         data: {
           name: 'system',
-          code: this.editor.getSession().getValue()
+          code: this.code_editor.getSession().getValue()
         }
       }).done(function(result) {
         if (result.error) {

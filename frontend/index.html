@@ -12,6 +12,7 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
           integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
           crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
 
   <div id="app">
     <div id="left">
@@ -23,11 +24,11 @@
     </div>
 
     <div id="right">
-      <div id="passes">
-        <div v-for="pass in passes">{{ pass.name }}</div>
-      </div>
+      <select v-model="selected">
+        <option v-for="pass in passes" v-bind:value="pass.num">{{ pass.num }}: {{ pass.pass }}</option>
+      </select>
 
-      <textarea id="output">{{ output }}</textarea>
+      <div id="output">{{ this.passes && this.selected ? (_.find(this.passes, { num: this.selected }).content) : "" }}</div>
     </div>
   </div>
 
