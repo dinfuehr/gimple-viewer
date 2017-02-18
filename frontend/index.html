@@ -28,7 +28,7 @@
         <option v-for="pass in passes" v-bind:value="pass.num">{{ pass.num }}: {{ pass.pass }}</option>
       </select>
 
-      <div id="output">{{ this.passes && this.selected ? (_.find(this.passes, { num: this.selected }).content) : "" }}</div>
+      <div id="output" style="height: 400px"></div>
     </div>
   </div>
 
