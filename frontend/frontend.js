@@ -5,7 +5,7 @@ new Vue({
   data: {
     code: "int foo(int a, int b) {\n  return a + b;\n}",
     passes: [],
-    selected: undefined,
+    selected: "assembly",
   },
 
   watch: {
@@ -40,11 +40,15 @@ new Vue({
     editor.setOptions({
       fontSize: '11pt'
     });
+
+    if (this.code) {
+      this.compile();
+    }
   },
 
   methods: {
     updateOutput: function(passes, selected) {
-      var content = passes && selected ? (_.find(passes, { num: selected }).content) : "";
+      var content = passes && selected ? (_.find(passes, { name: selected }).content) : "";
       this.output_editor.getSession().setValue(content);
     },
 

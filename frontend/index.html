@@ -25,7 +25,7 @@
 
     <div id="right">
       <select v-model="selected">
-        <option v-for="pass in passes" v-bind:value="pass.num">{{ pass.num }}: {{ pass.pass }}</option>
+        <option v-for="pass in passes" v-bind:value="pass.name">{{ pass.num }}: {{ pass.name }}</option>
       </select>
 
       <div id="output" style="height: 400px"></div>

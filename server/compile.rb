@@ -20,6 +20,8 @@ def compile(path, content)
       }
     end
 
+    last = 0
+
     for entry in Dir[File.join(dir, "*")]
       name = File.basename(entry)
 
@@ -31,14 +33,22 @@ def compile(path, content)
         next if pass == "tu"
 
         passes[num] = {
-          name: name,
-          pass: pass,
+          name: pass,
           num: num,
           format: format == 't' ? :gimple : :rtl,
           content: File.read(entry)
         }
+
+        last = [num, last].max
       end
     end
+
+    passes[last+1] = {
+      name: "assembly",
+      num: last+1,
+      format: :assembly,
+      content: File.read("#{dir}/main.s")
+    }
   end
 
   passes.delete_if { |x| x.nil? }
